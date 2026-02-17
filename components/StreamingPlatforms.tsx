@@ -63,14 +63,15 @@ const StreamingPlatforms: React.FC<StreamingPlatformsProps> = ({ onSelectPlatfor
                                 data-nav-col={index}
                                 className="shrink-0 w-28 h-14 rounded-xl flex items-center justify-center p-3.5
                                   cursor-pointer group/item focus:outline-none
-                                  transition-all duration-300 ease-out
-                                  hover:scale-110 focus-visible:scale-110
-                                  focus-visible:ring-2 focus-visible:ring-white/60"
+                                  focus-visible:ring-2 focus-visible:ring-white/60
+                                  hover:scale-[1.35] focus-visible:scale-[1.35]
+                                  transition-transform duration-300 ease-out"
                                 style={{
                                   background: 'rgba(255,255,255,0.04)',
                                   border: '1px solid rgba(255,255,255,0.06)',
                                   borderRadius: '14px',
-                                  transition: 'all 0.3s cubic-bezier(0.22, 1, 0.36, 1)',
+                                  transformOrigin: 'bottom center',
+                                  transition: 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, background 0.3s, border 0.3s',
                                 }}
                                 onMouseEnter={(e) => {
                                   const el = e.currentTarget;

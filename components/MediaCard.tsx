@@ -377,55 +377,55 @@ const MediaCard: React.FC<MediaCardProps> = React.memo(({ media, onClick, onPlay
                   )}
                 </div>
 
-                {/* Botões — estilo referência: Assistir branco, demais circulares escuros */}
+                {/* Botões — mesmo estilo do banner: glass translúcido */}
                 <div className="flex items-center gap-2">
-                  {/* Assistir — botão principal branco */}
+                  {/* Assistir — alongado, glass translúcido (igual ao banner) */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); goToWatch(e); }}
                     tabIndex={-1}
-                    className={`py-1.5 px-3 rounded-xl font-bold text-[10px] flex items-center gap-1.5 transition-all
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl font-bold text-[10px] transition-all
+                      bg-white/15 hover:bg-white/25 text-white border border-white/20
                       ${buttonMode && activeBtn === 0 ? 'scale-110 ring-2 ring-white' : ''}`}
-                    style={{
-                      backgroundColor: 'rgba(255,255,255,0.95)',
-                      color: '#000',
-                    }}
                   >
-                    <Play size={11} fill="black" /> Assistir
+                    <Play size={12} fill="currentColor" /> Assistir
                   </button>
 
-                  {/* + (Minha Lista) — circular escuro */}
+                  {/* + (Minha Lista) — circular glass (igual ao banner) */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchlist(e); }}
                     tabIndex={-1}
-                    className={`w-8 h-8 flex items-center justify-center rounded-full text-white border border-white/20 transition-all
+                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all
+                      bg-white/10 text-white border border-white/20 hover:bg-white/20
                       ${buttonMode && activeBtn === 1 ? 'scale-110 ring-2 ring-white' : ''}
-                      ${inWatchlist ? 'bg-green-600/80' : 'bg-black/70'}`}
+                      ${inWatchlist ? 'bg-green-500/25' : ''}`}
                     title={inWatchlist ? 'Remover da Lista' : 'Minha Lista'}
                   >
                     {inWatchlist ? <Check size={12} strokeWidth={2.5} /> : <Plus size={12} strokeWidth={2.5} />}
                   </button>
 
-                  {/* Relógio (Assistir Depois) — circular escuro */}
+                  {/* Relógio (Assistir Depois) — circular glass (igual ao banner) */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchLater(e); }}
                     tabIndex={-1}
-                    className={`w-8 h-8 flex items-center justify-center rounded-full text-white border border-white/20 transition-all
+                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all
+                      bg-white/10 text-white border border-white/20 hover:bg-white/20
                       ${buttonMode && activeBtn === 2 ? 'scale-110 ring-2 ring-white' : ''}
-                      ${inWatchLater ? 'bg-blue-600/80' : 'bg-black/70'}`}
+                      ${inWatchLater ? 'bg-blue-500/25' : ''}`}
                     title={inWatchLater ? 'Remover' : 'Ver Depois'}
                   >
                     <Clock size={12} strokeWidth={2.5} />
                   </button>
 
-                  {/* Info (Detalhes) — circular escuro */}
+                  {/* Info (Detalhes) — circular glass (igual ao banner) */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); goToDetails(); }}
                     tabIndex={-1}
-                    className={`w-8 h-8 flex items-center justify-center rounded-full text-white border border-white/20 bg-black/70 transition-all
+                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all
+                      bg-white/10 text-white border border-white/20 hover:bg-white/20
                       ${buttonMode && activeBtn === 3 ? 'scale-110 ring-2 ring-white' : ''}`}
                     title="Detalhes"
                   >

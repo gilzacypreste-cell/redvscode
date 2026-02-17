@@ -128,11 +128,7 @@ const Home: React.FC<HomeProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [filter, setFilter] = useState<string | null>(null);
-  const [bgBackdrop, setBgBackdrop] = useState<string>('');
   const bgRef = useRef<HTMLDivElement>(null);
-
-  // Callback estável para o HeroBanner informar o backdrop atual
-  const handleBackdropChange = useCallback((url: string) => setBgBackdrop(url), []);
 
   // Banner usa trending TMDB (posters oficiais garantidos)
   const featuredList = useMemo(() => [...trendingMovies, ...trendingSeries].slice(0, 12), [trendingMovies, trendingSeries]);
@@ -199,38 +195,35 @@ const Home: React.FC<HomeProps> = ({
 
   return (
     <div className="w-full space-y-4 pb-20 animate-fade-in relative">
-      {/* === FUNDO DA PÁGINA: backdrop do banner com 60% blur === */}
-      {bgBackdrop && (
-        <div
-          ref={bgRef}
-          className="fixed inset-0 w-screen h-screen z-[-1] transition-opacity duration-700"
-        >
-          <img
-            src={bgBackdrop}
-            alt=""
-            className="w-full h-full object-cover"
-            style={{
-              filter: 'brightness(0.4)',
-              transform: 'scale(1.15)',
-            }}
-          />
-          {/* Overlay escuro para garantir contraste */}
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-      )}
+      {/* === FUNDO: índigo/roxo (sem vinho); alinhado à área de conteúdo === */}
+      <div
+        ref={bgRef}
+        className="fixed inset-0 w-screen h-screen z-[-1]"
+        style={{
+          background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1528 35%, #16122e 60%, #0a0a0f 100%)',
+        }}
+      />
 
-      {/* Hero Banner */}
+      {/* Hero Banner — como era; faixa com cor do poster e logos dentro dela */}
       {!filter && (
-        <div className="mt-0 relative z-0">
-          <HeroBanner onPlayMedia={onPlayMedia} onSelectMedia={onSelectMedia} dbMedia={allContent} onBackdropChange={handleBackdropChange} />
+        <div className="mt-0 relative z-0 w-full flex flex-col" style={{ height: '100vh', minHeight: '100vh' }}>
+          <div className="flex-1 min-h-0 overflow-hidden relative">
+            <HeroBanner onPlayMedia={onPlayMedia} onSelectMedia={onSelectMedia} dbMedia={allContent} />
+          </div>
+          {/* Faixa de logos — mesmo tom da área de conteúdo (sem vinho) */}
+          <div
+            className="w-full flex-shrink-0 flex items-center justify-center py-3"
+            style={{
+              background: 'linear-gradient(180deg, #1a1528 0%, #16122e 50%, #15102a 100%)',
+            }}
+          >
+            <StreamingPlatforms onSelectPlatform={(name) => setFilter(name)} />
+          </div>
         </div>
       )}
 
       {/* Conteúdo da Home com margem ajustada para Sidebar e Banner */}
       <div className="modern-home-content relative z-20">
-
-        {/* Logos das Plataformas - Inserido entre Banner e Listas */}
-        <StreamingPlatforms onSelectPlatform={(name) => setFilter(name)} />
 
         {/* Trending Movies Row */}
         {filter && (

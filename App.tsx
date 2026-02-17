@@ -100,6 +100,7 @@ const LegacyAppInner: React.FC = () => {
     title: string; season: number; episode: number; stream_url?: string;
   } | null>(null);
   const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [settingsTarget, setSettingsTarget] = useState<{ tab?: string; subView?: string } | null>(null);
   const navigateRouter = useNavigate();
   const { savePosition, restorePosition, focusToFirstRow, setPosition, pushFocusTrap, popFocusTrap } = useSpatialNav();
   const { user, loading: authLoading } = useAuth();
@@ -527,7 +528,13 @@ const LegacyAppInner: React.FC = () => {
       case Page.ADMIN:
         return <AdminDashboard />;
       case Page.SETTINGS:
-        return <Settings onBack={() => setCurrentPage(Page.HOME)} />;
+        return (
+          <Settings
+            onBack={() => { setCurrentPage(Page.HOME); setSettingsTarget(null); }}
+            initialTab={settingsTarget?.tab}
+            initialSubView={settingsTarget?.subView}
+          />
+        );
       case Page.SEARCH:
         return <Search onSelectMedia={(m) => navigate(Page.DETAILS, m)} onPlayMedia={handlePlayMedia} />;
       default:
@@ -537,29 +544,13 @@ const LegacyAppInner: React.FC = () => {
 
   const showNav = ![Page.LOGIN, Page.PLANS, Page.PROFILES, Page.PLAYER, Page.DETAILS, Page.ADMIN, Page.SETTINGS, Page.LIVE].includes(currentPage);
 
-  // Background: poster do conteúdo com blur
-  const getBackgroundImage = () => {
-    if (selectedMedia) return selectedMedia.poster;
-    // Trending TMDB para background (tem URLs TMDB garantidas)
-    if (trendingMovies.length > 0) return trendingMovies[0]?.backdrop || trendingMovies[0]?.poster;
-    if (currentPage === Page.MOVIES) return movies[0]?.poster;
-    if (currentPage === Page.SERIES) return series[0]?.poster;
-    return movies[0]?.poster || series[0]?.poster || '';
-  };
-
-  const bgImage = getBackgroundImage();
-
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden overflow-y-auto flex flex-col items-center text-white">
-      {/* Background Layer — blur reduzido para performance (Fire Stick) */}
+      {/* Background: gradiente com cores do banner (sem poster) */}
       <div
-        className="fixed inset-0 transition-opacity duration-1000 ease-in-out -z-10"
+        className="fixed inset-0 -z-10"
         style={{
-          backgroundImage: bgImage ? `url(${bgImage})` : 'none',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: currentPage === Page.PLAYER ? 'none' : 'brightness(0.3)',
-          opacity: bgImage ? 1 : 0,
+          background: 'linear-gradient(180deg, #0f0f1a 0%, #1a0a14 35%, #0d0d12 60%, #0a0a0f 100%)',
         }}
       />
 
@@ -575,6 +566,10 @@ const LegacyAppInner: React.FC = () => {
               onNavigate={navigate}
               profile={activeProfile}
               onProfileClick={() => setCurrentPage(Page.SETTINGS)}
+              onProfileMenuSelect={(tab, subView) => {
+                setSettingsTarget({ tab, subView });
+                setCurrentPage(Page.SETTINGS);
+              }}
             />
           </div>
         </header>

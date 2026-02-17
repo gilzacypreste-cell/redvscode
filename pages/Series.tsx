@@ -21,10 +21,6 @@ const COLS_PER_ROW = 6;
 const Series: React.FC<SeriesProps> = ({ series, seriesByGenre, trendingSeries, onSelectMedia, onPlayMedia }) => {
   const [featured, setFeatured] = useState<Media | null>(null);
   const [filter, setFilter] = useState<string | null>(null);
-  const [bgBackdrop, setBgBackdrop] = useState<string>('');
-
-  // Callback estável para o HeroBanner informar o backdrop atual
-  const handleBackdropChange = useCallback((url: string) => setBgBackdrop(url), []);
   const [localSeries, setLocalSeries] = useState<Media[] | null>(null);
   const [localSeriesByGenre, setLocalSeriesByGenre] = useState<Map<string, Media[]>>(new Map());
 
@@ -99,34 +95,33 @@ const Series: React.FC<SeriesProps> = ({ series, seriesByGenre, trendingSeries, 
 
   return (
     <div className="w-full space-y-4 pb-20 animate-fade-in relative">
-      {/* === FUNDO DA PÁGINA: backdrop do banner com 60% blur === */}
-      {bgBackdrop && (
-        <div className="fixed inset-0 w-screen h-screen z-[-1] transition-opacity duration-700">
-          <img
-            src={bgBackdrop}
-            alt=""
-            className="w-full h-full object-cover"
-            style={{
-              filter: 'blur(60px) brightness(0.4)',
-              transform: 'scale(1.15)',
-            }}
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-      )}
+      {/* === FUNDO: mesmo gradiente da Home === */}
+      <div
+        className="fixed inset-0 w-screen h-screen z-[-1]"
+        style={{
+          background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1528 35%, #16122e 60%, #0a0a0f 100%)',
+        }}
+      />
 
-      {/* Hero Banner (Only shown if no filter) */}
+      {/* Banner Séries — 100vh (Hero + faixa de logos), mesma lógica da Home */}
       {!filter && (
-        <div className="mt-0 relative z-0">
-          <HeroBanner mediaType="tv" onPlayMedia={onPlayMedia} onSelectMedia={onSelectMedia} dbMedia={effectiveSeries} onBackdropChange={handleBackdropChange} />
+        <div className="mt-0 relative z-0 w-full flex flex-col" style={{ height: '100vh', minHeight: '100vh' }}>
+          <div className="flex-1 min-h-0 overflow-hidden relative">
+            <HeroBanner mediaType="tv" onPlayMedia={onPlayMedia} onSelectMedia={onSelectMedia} dbMedia={effectiveSeries} />
+          </div>
+          <div
+            className="w-full flex-shrink-0 flex items-center justify-center py-3"
+            style={{
+              background: 'linear-gradient(180deg, #1a1528 0%, #16122e 50%, #15102a 100%)',
+            }}
+          >
+            <StreamingPlatforms onSelectPlatform={(name) => setFilter(name)} />
+          </div>
         </div>
       )}
 
-      {/* Conteúdo com margem ajustada (mesma lógica da Home) */}
-      <div className={`modern-home-content relative z-20 ${filter ? 'mt-32' : ''}`}>
-
-        {/* Streaming Platforms */}
-        <StreamingPlatforms onSelectPlatform={(name) => setFilter(name)} />
+      {/* Conteúdo (2cm abaixo das logos quando sem filtro) */}
+      <div className={`modern-home-content relative z-20 ${filter ? '!mt-0 pt-12' : ''}`}>
 
         {/* Filter Panel */}
         {filter && (

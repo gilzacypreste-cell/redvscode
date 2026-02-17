@@ -257,14 +257,16 @@ const Search: React.FC<SearchProps> = ({ onSelectMedia, onPlayMedia }) => {
   }, [focusArea, focusedResultIdx]);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#0B0B0F] text-white overflow-y-auto overflow-x-hidden">
-      {/* Background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(229,9,20,0.06)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(229,9,20,0.04)_0%,transparent_50%)]" />
-      </div>
+    <div className="relative min-h-screen w-full text-white overflow-y-auto overflow-x-hidden">
+      {/* Background roxo da Home */}
+      <div
+        className="fixed inset-0 w-screen h-screen z-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1528 35%, #16122e 60%, #0a0a0f 100%)',
+        }}
+      />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-8 flex flex-col gap-6">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-8 flex flex-col gap-6" style={{ paddingTop: '3cm' }}>
         
         {/* Header */}
         <motion.div 

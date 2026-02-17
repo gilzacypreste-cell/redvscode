@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "apply:schema": "node scripts/apply-sql.js",
-    "check:schema": "node check-schema.js"
+    "check:schema": "node check-schema.js",
+    "seed:banner": "node scripts/seedBannerWebp.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.1.0",

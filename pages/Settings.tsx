@@ -120,7 +120,7 @@ const SettingsCard: React.FC<{
   </GlassPanel>
 );
 
-const Settings: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+const Settings: React.FC<{ onBack: () => void; initialTab?: string; initialSubView?: string }> = ({ onBack, initialTab, initialSubView }) => {
   // Disable SpatialNav — Settings has own D-Pad handler
   const { setEnabled } = useSpatialNav();
   useEffect(() => {
@@ -128,8 +128,14 @@ const Settings: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     return () => setEnabled(true);
   }, [setEnabled]);
 
-  const [activeTab, setActiveTab] = useState('profiles');
-  const [currentSubView, setCurrentSubView] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState(initialTab || 'profiles');
+  const [currentSubView, setCurrentSubView] = useState<string | null>(initialSubView || null);
+
+  // Aplicar initialTab/initialSubView ao montar (ex.: vindo do submenu do perfil)
+  useEffect(() => {
+    if (initialTab) setActiveTab(initialTab);
+    if (initialSubView) setCurrentSubView(initialSubView);
+  }, [initialTab, initialSubView]);
 
   // Data States
   const [userSettings, setUserSettings] = useState<UserSettings | null>(null);
