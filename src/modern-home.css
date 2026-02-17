@@ -40,15 +40,25 @@
 /* ============================================ 
    CONTENT AREA - Espaçamento entre fileiras 
    ============================================ */ 
+/* Área embaixo das logos — fundo texturizado; posters 2cm abaixo das logos */
 .modern-home-content { 
-  padding: 0 0 50px 0; 
-  margin-top: 83vh; 
-  /* Poster começa abaixo da dobra do banner (estilo Netflix) */ 
+  padding: 2cm 0 50px 0; 
+  margin-top: 100vh; 
   position: relative; 
   z-index: 20; 
   display: flex; 
   flex-direction: column; 
   gap: 20px; 
+  background: linear-gradient(135deg, #1a1528 0%, #16122e 25%, #1e1838 50%, #15102a 100%);
+  background-image: 
+    repeating-linear-gradient(
+      125deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.02) 2px,
+      rgba(255,255,255,0.02) 3px
+    ),
+    linear-gradient(180deg, #1a1528 0%, #16122e 40%, #1e1838 70%, #15102a 100%);
 } 
  
  /* ============================================ 
