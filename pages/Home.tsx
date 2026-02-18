@@ -195,12 +195,12 @@ const Home: React.FC<HomeProps> = ({
 
   return (
     <div className="w-full space-y-4 pb-20 animate-fade-in relative">
-      {/* === FUNDO: índigo/roxo (sem vinho); alinhado à área de conteúdo === */}
+      {/* === FUNDO: escuro neutro (visionOS) === */}
       <div
         ref={bgRef}
         className="fixed inset-0 w-screen h-screen z-[-1]"
         style={{
-          background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1528 35%, #16122e 60%, #0a0a0f 100%)',
+          background: 'linear-gradient(180deg, #000000 0%, #0a0a14 35%, #0f0f1a 60%, #0a0a0f 100%)',
         }}
       />
 
@@ -210,11 +210,11 @@ const Home: React.FC<HomeProps> = ({
           <div className="flex-1 min-h-0 overflow-hidden relative">
             <HeroBanner onPlayMedia={onPlayMedia} onSelectMedia={onSelectMedia} dbMedia={allContent} />
           </div>
-          {/* Faixa de logos — mesmo tom da área de conteúdo (sem vinho) */}
+          {/* Faixa de logos — tom escuro neutro */}
           <div
             className="w-full flex-shrink-0 flex items-center justify-center py-3"
             style={{
-              background: 'linear-gradient(180deg, #1a1528 0%, #16122e 50%, #15102a 100%)',
+              background: 'linear-gradient(180deg, transparent 0%, #0a0a14 50%, #0a0a14 100%)',
             }}
           >
             <StreamingPlatforms onSelectPlatform={(name) => setFilter(name)} />
