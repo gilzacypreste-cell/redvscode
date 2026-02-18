@@ -95,11 +95,11 @@ const Series: React.FC<SeriesProps> = ({ series, seriesByGenre, trendingSeries, 
 
   return (
     <div className="w-full space-y-4 pb-20 animate-fade-in relative">
-      {/* === FUNDO: mesmo gradiente da Home === */}
+      {/* === FUNDO: mesmo gradiente da tela de Login === */}
       <div
         className="fixed inset-0 w-screen h-screen z-[-1]"
         style={{
-          background: 'linear-gradient(180deg, #0f0f1a 0%, #1a1528 35%, #16122e 60%, #0a0a0f 100%)',
+          background: 'radial-gradient(ellipse at 30% 20%, rgba(40,20,60,0.6) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(20,10,40,0.4) 0%, transparent 50%), linear-gradient(180deg, #0a0a12 0%, #0d0b18 40%, #090910 100%)',
         }}
       />
 
@@ -112,7 +112,7 @@ const Series: React.FC<SeriesProps> = ({ series, seriesByGenre, trendingSeries, 
           <div
             className="w-full flex-shrink-0 flex items-center justify-center py-3"
             style={{
-              background: 'linear-gradient(180deg, #1a1528 0%, #16122e 50%, #15102a 100%)',
+              background: 'linear-gradient(180deg, transparent 0%, #0a0a12 50%, #0a0a12 100%)',
             }}
           >
             <StreamingPlatforms onSelectPlatform={(name) => setFilter(name)} />

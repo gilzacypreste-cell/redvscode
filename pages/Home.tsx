@@ -195,12 +195,12 @@ const Home: React.FC<HomeProps> = ({
 
   return (
     <div className="w-full space-y-4 pb-20 animate-fade-in relative">
-      {/* === FUNDO: escuro neutro (visionOS) === */}
+      {/* === FUNDO: mesmo gradiente da tela de Login === */}
       <div
         ref={bgRef}
         className="fixed inset-0 w-screen h-screen z-[-1]"
         style={{
-          background: 'linear-gradient(180deg, #000000 0%, #0a0a14 35%, #0f0f1a 60%, #0a0a0f 100%)',
+          background: 'radial-gradient(ellipse at 30% 20%, rgba(40,20,60,0.6) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(20,10,40,0.4) 0%, transparent 50%), linear-gradient(180deg, #0a0a12 0%, #0d0b18 40%, #090910 100%)',
         }}
       />
 
