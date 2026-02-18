@@ -546,11 +546,11 @@ const LegacyAppInner: React.FC = () => {
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden overflow-y-auto flex flex-col items-center text-white">
-      {/* Background: gradiente com cores do banner (sem poster) */}
+      {/* Background: mesmo gradiente da tela de Login */}
       <div
         className="fixed inset-0 -z-10"
         style={{
-          background: 'linear-gradient(180deg, #0f0f1a 0%, #1a0a14 35%, #0d0d12 60%, #0a0a0f 100%)',
+          background: 'radial-gradient(ellipse at 30% 20%, rgba(40,20,60,0.6) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(20,10,40,0.4) 0%, transparent 50%), linear-gradient(180deg, #0a0a12 0%, #0d0b18 40%, #090910 100%)',
         }}
       />
 
