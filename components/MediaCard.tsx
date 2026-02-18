@@ -304,7 +304,7 @@ const MediaCard: React.FC<MediaCardProps> = React.memo(({ media, onClick, onPlay
         style={{ width: isActive ? expandedWidth : cardWidth, height: cardHeight }}
         onClick={onClick}
       >
-        {/* ═══ POSTER visionOS (Estado Retraído) ═══ */}
+        {/* ═══ POSTER visionOS (Estado Retraido) ═══ */}
         <div className={`absolute inset-0 transition-opacity duration-300 ${isActive ? 'opacity-0' : 'opacity-100'}`}>
           {/* Glass frame container */}
           <div className="absolute inset-0 rounded-2xl overflow-hidden">
@@ -316,12 +316,49 @@ const MediaCard: React.FC<MediaCardProps> = React.memo(({ media, onClick, onPlay
               onLoad={() => setImageLoaded(true)}
             />
             {!imageLoaded && <div className="absolute inset-0 bg-white/5 animate-pulse" />}
-            {/* Gradiente sutil na base */}
-            <div className="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+
+            {/* visionOS glass light reflection — diagonal shine across poster */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 25%, transparent 50%, rgba(255,255,255,0.03) 75%, rgba(255,255,255,0.10) 100%)',
+              }}
+            />
+            {/* Top-left specular highlight */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                top: '-20%',
+                left: '-20%',
+                width: '70%',
+                height: '70%',
+                background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.12) 0%, transparent 70%)',
+              }}
+            />
+            {/* Bottom edge subtle glow */}
+            <div
+              className="absolute inset-x-0 bottom-0 pointer-events-none"
+              style={{
+                height: '50%',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)',
+              }}
+            />
           </div>
           {/* visionOS glass border — moldura 3D premium */}
-          <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/[0.12] pointer-events-none" />
-          <div className="absolute inset-0 rounded-2xl border border-white/[0.06] pointer-events-none shadow-[0_8px_32px_rgba(0,0,0,0.5),0_2px_8px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.08)]" />
+          <div
+            className="absolute inset-0 rounded-2xl pointer-events-none"
+            style={{
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.15), inset 0 -1px 0 rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3)',
+              border: '1px solid rgba(255,255,255,0.10)',
+            }}
+          />
+          {/* Inner glass bevel — top-left bright edge */}
+          <div
+            className="absolute inset-0 rounded-2xl pointer-events-none"
+            style={{
+              background: 'linear-gradient(160deg, rgba(255,255,255,0.08) 0%, transparent 30%, transparent 80%, rgba(0,0,0,0.15) 100%)',
+            }}
+          />
         </div>
 
         {/* Focus ring (TV) — linha fina seguindo a curva do poster */}
