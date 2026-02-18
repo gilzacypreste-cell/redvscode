@@ -414,56 +414,84 @@ const MediaCard: React.FC<MediaCardProps> = React.memo(({ media, onClick, onPlay
                   )}
                 </div>
 
-                {/* Botões — mesmo estilo do banner: glass translúcido */}
+                {/* Botoes visionOS glass com efeito de luz */}
                 <div className="flex items-center gap-2">
-                  {/* Assistir — alongado, glass translúcido (igual ao banner) */}
+                  {/* Assistir — pill branco solido visionOS */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); goToWatch(e); }}
                     tabIndex={-1}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-4 rounded-xl font-bold text-[10px] transition-all
-                      bg-white/15 hover:bg-white/25 text-white border border-white/20
-                      ${buttonMode && activeBtn === 0 ? 'scale-110 ring-2 ring-white' : ''}`}
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-4 rounded-full font-bold text-[11px] tracking-wide transition-all duration-300
+                      ${buttonMode && activeBtn === 0 ? 'scale-110 ring-2 ring-white/80 ring-offset-1 ring-offset-transparent' : ''}`}
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(230,230,240,0.90) 100%)',
+                      color: '#0a0a12',
+                      border: '1px solid rgba(255,255,255,0.4)',
+                      boxShadow: '0 4px 20px rgba(255,255,255,0.15), 0 2px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,1), inset 0 -1px 2px rgba(0,0,0,0.05)',
+                    }}
                   >
                     <Play size={12} fill="currentColor" /> Assistir
                   </button>
 
-                  {/* + (Minha Lista) — circular glass (igual ao banner) */}
+                  {/* + (Minha Lista) — circular glass escuro visionOS */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchlist(e); }}
                     tabIndex={-1}
-                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all
-                      bg-white/10 text-white border border-white/20 hover:bg-white/20
-                      ${buttonMode && activeBtn === 1 ? 'scale-110 ring-2 ring-white' : ''}
-                      ${inWatchlist ? 'bg-green-500/25' : ''}`}
+                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300
+                      ${buttonMode && activeBtn === 1 ? 'scale-110 ring-2 ring-white/80 ring-offset-1 ring-offset-transparent' : ''}`}
+                    style={{
+                      background: inWatchlist
+                        ? 'linear-gradient(180deg, rgba(34,197,94,0.25) 0%, rgba(20,120,60,0.15) 100%)'
+                        : 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
+                      backdropFilter: 'blur(30px) saturate(150%)',
+                      WebkitBackdropFilter: 'blur(30px) saturate(150%)',
+                      border: '1px solid rgba(255,255,255,0.18)',
+                      boxShadow: '0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 12px rgba(255,255,255,0.04)',
+                      color: 'white',
+                    }}
                     title={inWatchlist ? 'Remover da Lista' : 'Minha Lista'}
                   >
                     {inWatchlist ? <Check size={12} strokeWidth={2.5} /> : <Plus size={12} strokeWidth={2.5} />}
                   </button>
 
-                  {/* Relógio (Assistir Depois) — circular glass (igual ao banner) */}
+                  {/* Relogio — circular glass escuro visionOS */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleToggleWatchLater(e); }}
                     tabIndex={-1}
-                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all
-                      bg-white/10 text-white border border-white/20 hover:bg-white/20
-                      ${buttonMode && activeBtn === 2 ? 'scale-110 ring-2 ring-white' : ''}
-                      ${inWatchLater ? 'bg-blue-500/25' : ''}`}
+                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300
+                      ${buttonMode && activeBtn === 2 ? 'scale-110 ring-2 ring-white/80 ring-offset-1 ring-offset-transparent' : ''}`}
+                    style={{
+                      background: inWatchLater
+                        ? 'linear-gradient(180deg, rgba(59,130,246,0.25) 0%, rgba(30,80,180,0.15) 100%)'
+                        : 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
+                      backdropFilter: 'blur(30px) saturate(150%)',
+                      WebkitBackdropFilter: 'blur(30px) saturate(150%)',
+                      border: '1px solid rgba(255,255,255,0.18)',
+                      boxShadow: '0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 12px rgba(255,255,255,0.04)',
+                      color: 'white',
+                    }}
                     title={inWatchLater ? 'Remover' : 'Ver Depois'}
                   >
                     <Clock size={12} strokeWidth={2.5} />
                   </button>
 
-                  {/* Info (Detalhes) — circular glass (igual ao banner) */}
+                  {/* Info — circular glass escuro visionOS */}
                   <button
                     type="button"
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); goToDetails(); }}
                     tabIndex={-1}
-                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all
-                      bg-white/10 text-white border border-white/20 hover:bg-white/20
-                      ${buttonMode && activeBtn === 3 ? 'scale-110 ring-2 ring-white' : ''}`}
+                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300
+                      ${buttonMode && activeBtn === 3 ? 'scale-110 ring-2 ring-white/80 ring-offset-1 ring-offset-transparent' : ''}`}
+                    style={{
+                      background: 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
+                      backdropFilter: 'blur(30px) saturate(150%)',
+                      WebkitBackdropFilter: 'blur(30px) saturate(150%)',
+                      border: '1px solid rgba(255,255,255,0.18)',
+                      boxShadow: '0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 12px rgba(255,255,255,0.04)',
+                      color: 'white',
+                    }}
                     title="Detalhes"
                   >
                     <Info size={12} strokeWidth={2.5} />
