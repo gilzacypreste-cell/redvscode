@@ -14,30 +14,35 @@ import { useSpatialNav } from '../hooks/useSpatialNavigation';
 
 /* ═══ Estilos glass (referência Vision Pro) ═══ */
 const GLASS_PANEL: React.CSSProperties = {
-  background: 'rgba(0, 0, 0, 0.15)',
-  backdropFilter: 'blur(24px)',
-  WebkitBackdropFilter: 'blur(24px)',
-  border: '1px solid rgba(255, 255, 255, 0.05)',
-  boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.2)',
+  background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+  backdropFilter: 'blur(60px) saturate(180%)',
+  WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+  border: '1px solid rgba(255, 255, 255, 0.08)',
+  boxShadow: '0 12px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 0.5px rgba(255,255,255,0.04)',
 };
 
 const PROGRAM_BLOCK: React.CSSProperties = {
-  background: 'rgba(255, 255, 255, 0.1)',
-  backdropFilter: 'blur(8px)',
-  WebkitBackdropFilter: 'blur(8px)',
-  border: '1px solid rgba(255, 255, 255, 0.12)',
+  background: 'rgba(255, 255, 255, 0.06)',
+  backdropFilter: 'blur(30px) saturate(150%)',
+  WebkitBackdropFilter: 'blur(30px) saturate(150%)',
+  border: '1px solid rgba(255, 255, 255, 0.08)',
+  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 4px 16px rgba(0,0,0,0.2)',
 };
 
 const PROGRAM_HIGHLIGHT: React.CSSProperties = {
-  background: 'linear-gradient(135deg, rgba(230, 20, 60, 0.7) 0%, rgba(139, 0, 0, 0.4) 100%)',
-  border: '1px solid rgba(255, 100, 100, 0.4)',
-  boxShadow: '0 4px 20px rgba(200, 0, 0, 0.3)',
+  background: 'linear-gradient(135deg, rgba(229, 9, 20, 0.5) 0%, rgba(139, 0, 0, 0.25) 100%)',
+  backdropFilter: 'blur(30px) saturate(150%)',
+  WebkitBackdropFilter: 'blur(30px) saturate(150%)',
+  border: '1px solid rgba(255, 100, 100, 0.3)',
+  boxShadow: '0 8px 32px rgba(229, 9, 20, 0.25), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 60px -10px rgba(229,9,20,0.15)',
 };
 
 const CHANNEL_ACTIVE: React.CSSProperties = {
-  background: 'rgba(255, 255, 255, 0.15)',
-  border: '1px solid rgba(255, 255, 255, 0.3)',
-  boxShadow: '0 0 20px rgba(255, 255, 255, 0.05)',
+  background: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%)',
+  backdropFilter: 'blur(30px) saturate(150%)',
+  WebkitBackdropFilter: 'blur(30px) saturate(150%)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 30px rgba(255, 255, 255, 0.03)',
 };
 
 interface ChannelGuideProps {
@@ -192,7 +197,7 @@ const ChannelGuide: React.FC<ChannelGuideProps> = ({ channels, onBack, onSelectC
   return (
     <div
       className="fixed inset-0 z-[9999] flex flex-col p-5 gap-5 overflow-hidden"
-      style={{ background: '#000', fontFamily: "'Inter', system-ui, -apple-system, sans-serif" }}
+      style={{ background: 'radial-gradient(ellipse at 30% 20%, rgba(40,20,60,0.6) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(20,10,40,0.4) 0%, transparent 50%), linear-gradient(180deg, #0a0a12 0%, #0d0b18 40%, #090910 100%)', fontFamily: "'Inter', system-ui, -apple-system, sans-serif" }}
     >
       {/* ═══ HEADER ═══ */}
       <header className="flex justify-between items-stretch h-24 gap-4 shrink-0">

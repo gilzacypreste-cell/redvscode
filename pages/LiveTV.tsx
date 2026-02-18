@@ -368,13 +368,13 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
   }, [focusedIndex]);
 
   if (isLoading) return (
-    <div className="h-screen w-full flex items-center justify-center bg-black">
+    <div className="h-screen w-full flex items-center justify-center" style={{ background: 'radial-gradient(ellipse at 30% 20%, rgba(40,20,60,0.6) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(20,10,40,0.4) 0%, transparent 50%), linear-gradient(180deg, #0a0a12 0%, #0d0b18 40%, #090910 100%)' }}>
       <div className="w-12 h-12 border-4 border-[#E50914] border-t-transparent rounded-full animate-spin" />
     </div>
   );
 
   return (
-    <div className="relative h-screen w-full bg-black overflow-hidden font-sans select-none">
+    <div className="relative h-screen w-full overflow-hidden font-sans select-none" style={{ background: 'radial-gradient(ellipse at 30% 20%, rgba(40,20,60,0.6) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(20,10,40,0.4) 0%, transparent 50%), linear-gradient(180deg, #0a0a12 0%, #0d0b18 40%, #090910 100%)' }}>
 
       {/* PLAYER FULLSCREEN (BACKGROUND) */}
       <div className="absolute inset-0 z-0">
@@ -437,7 +437,13 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
       {/* ═══ OSD DE ZAPPING — aparece ao trocar canal com Up/Down ═══ */}
       {zappingOSD && selectedChannel && !isMenuOpen && (
         <div className="absolute top-8 left-1/2 -translate-x-1/2 z-[100] animate-in fade-in slide-in-from-top-4 duration-300 pointer-events-none">
-          <div className="flex items-center gap-4 bg-black/80 backdrop-blur-2xl border border-white/15 rounded-2xl px-6 py-4 shadow-[0_8px_40px_rgba(0,0,0,0.7)]">
+          <div className="flex items-center gap-4 rounded-[1.25rem] px-6 py-4" style={{
+            background: 'linear-gradient(135deg, rgba(20,15,30,0.85) 0%, rgba(10,10,18,0.9) 100%)',
+            backdropFilter: 'blur(60px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            boxShadow: '0 12px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 0.5px rgba(255,255,255,0.05)',
+          }}>
             {/* Logo */}
             <div className="w-14 h-14 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center overflow-hidden shrink-0">
               {selectedChannel.logo ? (
@@ -482,8 +488,15 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
         <div className="flex h-full">
         {/* 1. SIDEBAR */}
         <aside
-          className={`h-full bg-linear-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-2xl border-r border-white/[0.08] flex flex-col py-4 transition-all duration-500 ease-in-out shadow-[4px_0_30px_rgba(0,0,0,0.3)]
+          className={`h-full flex flex-col py-4 transition-all duration-500 ease-in-out
             ${isSidebarExpanded ? 'w-[200px]' : 'w-[60px]'}`}
+          style={{
+            background: 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+            backdropFilter: 'blur(60px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+            borderRight: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '4px 0 40px rgba(0,0,0,0.4), inset 1px 0 0 rgba(255,255,255,0.05)',
+          }}
           onMouseEnter={() => setIsSidebarExpanded(true)}
           onMouseLeave={() => setIsSidebarExpanded(false)}
         >
@@ -523,7 +536,13 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
         </aside>
 
         {/* 2. LISTA DE CANAIS */}
-        <div className="w-[320px] h-full flex flex-col glass-effect border-r border-white/10 shadow-2xl">
+        <div className="w-[320px] h-full flex flex-col" style={{
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.015) 100%)',
+          backdropFilter: 'blur(60px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+          borderRight: '1px solid rgba(255,255,255,0.08)',
+          boxShadow: '4px 0 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
+        }}>
           <div className="p-4 pb-3 space-y-3">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
@@ -581,17 +600,17 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
                 style={{
                   padding: '12px 14px',
                   background: isFocusedItem
-                    ? 'rgba(255, 255, 255, 0.12)'
+                    ? 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%)'
                     : 'rgba(255, 255, 255, 0.04)',
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
+                  backdropFilter: 'blur(40px) saturate(150%)',
+                  WebkitBackdropFilter: 'blur(40px) saturate(150%)',
                   border: isFocusedItem
-                    ? '1px solid rgba(255, 255, 255, 0.25)'
+                    ? '1px solid rgba(255, 255, 255, 0.28)'
                     : '1px solid rgba(255, 255, 255, 0.06)',
                   boxShadow: isFocusedItem
-                    ? '0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12), 0 0 0 1px rgba(229,9,20,0.3)'
-                    : '0 2px 12px rgba(0,0,0,0.2)',
-                  borderRadius: '16px',
+                    ? '0 12px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15), 0 0 0 1px rgba(229,9,20,0.25), 0 0 60px -10px rgba(229,9,20,0.08)'
+                    : '0 2px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.03)',
+                  borderRadius: '18px',
                 }}
               >
                 {/* Número do canal */}
@@ -679,7 +698,13 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
         {/* 3. INFO DO CANAL (DIREITA) — centralizado */}
         {selectedChannel && (
           <div className="flex-1 flex items-center justify-center animate-in fade-in slide-in-from-left-10 duration-1000">
-            <div className="max-w-lg w-full bg-linear-to-br from-white/[0.07] to-white/[0.02] backdrop-blur-2xl p-6 rounded-[1.5rem] border border-white/[0.12] space-y-4 shadow-[0_8px_60px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.08)] scale-[0.8] origin-center">
+            <div className="max-w-lg w-full p-6 rounded-[2rem] space-y-4 scale-[0.8] origin-center" style={{
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+              backdropFilter: 'blur(60px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              boxShadow: '0 12px 80px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1), 0 0 0 0.5px rgba(255,255,255,0.05)',
+            }}>
               {/* Header badges */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
@@ -896,7 +921,13 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
           tabIndex={0}
           className="fixed left-0 inset-y-0 w-24 flex items-center justify-center group z-[1000] hover:bg-black/40 transition-all focus:outline-none"
         >
-          <div className="w-16 h-16 rounded-full bg-white/[0.05] backdrop-blur-xl border border-white/[0.1] flex items-center justify-center text-white/40 group-hover:scale-125 group-hover:bg-white/[0.15] group-hover:text-white group-focus:scale-125 group-focus:bg-white/[0.15] group-focus:text-white transition-all shadow-2xl">
+          <div className="w-16 h-16 rounded-full flex items-center justify-center text-white/40 group-hover:scale-125 group-hover:text-white group-focus:scale-125 group-focus:text-white transition-all" style={{
+            background: 'rgba(255,255,255,0.06)',
+            backdropFilter: 'blur(40px) saturate(150%)',
+            WebkitBackdropFilter: 'blur(40px) saturate(150%)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
+          }}>
             <ChevronRight size={40} />
           </div>
         </button>
@@ -921,7 +952,16 @@ const LiveTV: React.FC<{ onBack?: () => void }> = ({ onBack }) => {
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .vision-btn { 
           background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(20px);
+          backdrop-filter: blur(40px) saturate(180%);
+          -webkit-backdrop-filter: blur(40px) saturate(180%);
+          border: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.06);
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .vision-btn:hover {
+          background: rgba(255, 255, 255, 0.1);
+          border-color: rgba(255,255,255,0.15);
+          box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
         }
       `}</style>
     </div>
